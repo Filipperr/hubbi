@@ -783,9 +783,12 @@
               <button class="danger-btn" id="friendCloseBtn">SULJE</button>
             </div>
             <div class="modal-body" style="justify-items: stretch;">
-              <div class="dim small">Syötä nimi. Tämä luo uuden chatin. Jos käyttäjä on olemassa tässä selaimessa samalla nimellä, lisätään myös hänelle kaveruus.</div>
+              <div class="dim small">Syötä kaverin nimi ja koodi. Koodi varmistaa, että lisäät oikean käyttäjän.</div>
               <div class="row" style="justify-content: stretch;">
                 <input id="friendName" type="text" placeholder="Kaverin nimi" maxlength="20" style="flex: 1;" />
+              </div>
+              <div class="row" style="justify-content: stretch;">
+                <input id="friendCode" type="password" placeholder="Kaverin koodi" maxlength="32" style="flex: 1;" />
               </div>
             </div>
             <div class="modal-actions">
@@ -990,7 +993,7 @@
     const friendCloseBtnEl = document.getElementById("friendCloseBtn");
     const friendAddBtnEl = document.getElementById("friendAddBtn");
     const friendNameEl = document.getElementById("friendName");
-    const friendCodeEl = document.getElementById("friendCode"); // legacy (removed from UI)
+    const friendCodeEl = document.getElementById("friendCode");
     const groupModalEl = document.getElementById("groupModal");
     const groupCloseBtnEl = document.getElementById("groupCloseBtn");
     const groupNameEl = document.getElementById("groupName");
@@ -3000,26 +3003,34 @@
       if (!me) return;
 
       const fn = normalizeName(friendNameEl.value);
-      if (!fn) return;
+      const fc = normalizeCode(friendCodeEl?.value);
+      if (!fn || !fc) return;
       if (fn.toLowerCase() === kukaOlen.toLowerCase()) {
         alert("Et voi lisätä itseäsi.");
         return;
       }
 
+      const friend = getUserByName(fn);
+      if (!friend) {
+        alert("Kaveria ei löytynyt.");
+        return;
+      }
+      if (!verifyUserCode(friend.name, fc)) {
+        alert("Kaverin koodi on väärä.");
+        return;
+      }
+
       const users = loadUsers();
       const meIdx = users.findIndex((u) => u.name.toLowerCase() === me.name.toLowerCase());
-      if (meIdx === -1) return;
-      const friend = getUserByName(fn);
-      const frIdx = friend ? users.findIndex((u) => u.name.toLowerCase() === friend.name.toLowerCase()) : -1;
+      const frIdx = users.findIndex((u) => u.name.toLowerCase() === friend.name.toLowerCase());
+      if (meIdx === -1 || frIdx === -1) return;
 
       const meSet = new Set(users[meIdx].friends || []);
-      meSet.add(fn);
+      meSet.add(friend.name);
       users[meIdx].friends = Array.from(meSet).sort((a, b) => a.localeCompare(b, "fi"));
-      if (frIdx !== -1) {
-        const frSet = new Set(users[frIdx].friends || []);
-        frSet.add(me.name);
-        users[frIdx].friends = Array.from(frSet).sort((a, b) => a.localeCompare(b, "fi"));
-      }
+      const frSet = new Set(users[frIdx].friends || []);
+      frSet.add(me.name);
+      users[frIdx].friends = Array.from(frSet).sort((a, b) => a.localeCompare(b, "fi"));
       saveUsers(users);
 
       closeFriendModal();
