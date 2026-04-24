@@ -1,24 +1,29 @@
-# 🚀 Hello World -sovellus
+# 💬 Modern LED Chat Interface
 
-Tämä on ensimmäinen GitHub-sovellukseni! Se on tyylikäs ja simppeli "Hello World" -sivu, joka on rakennettu puhtaalla HTML- ja CSS-koodilla.
+Tämä on tyylikäs, WhatsApp-tyylinen chat-käyttöliittymä, joka on toteutettu modernilla HTML5- ja CSS3-tekniikalla. Sovelluksessa on käytetty tummaa teemaa, LED-henkisiä korostusvärejä ja hienoja lasiefektejä (Glassmorphism).
 
-## 🔗 Kokeile sovellusta täällä:
-👉 [Klikkaa tästä nähdäksesi sovelluksen livenä!](https://github.io)
+## 🚀 Live-demo
+Katso sovellus toiminnassa täältä:
+👉 **[OMA LINKKISI TÄHÄN]**
+*(Esim. https://github.io)*
 
 ## ✨ Ominaisuudet
-* **Moderni ulkoasu:** Minimalistinen muotoilu ja selkeä typografia.
-* **Keskittäminen:** Käyttää Flexbox-tekniikkaa, jotta teksti pysyy aina keskellä ruutua.
-* **Responsiivinen:** Mukautuu automaattisesti eri näytön kokoihin (viewport-tuki).
+* **WhatsApp-inspiroitunut ulkoasu:** Tumma teema, viestikuplat ja tuttu asettelu.
+* **Moderni UI/UX:** Käyttää `backdrop-filter` -sumennuksia ja pehmeitä animaatioita.
+* **LED-korostukset:** Neon-vihreät ja siniset sävyt antavat sovellukselle futuristisen ilmeen.
+* **Responsiivinen suunnittelu:** Käyttöliittymä mukautuu automaattisesti eri näytön kokoille.
+* **Emoji-tuki:** Valmius emoji-valikolle ja interaktiivisille elementeille.
 
-## 🛠️ Teknologiat
-* **HTML5** – Sivun rakenne.
-* **CSS3** – Tyylit, kuten taustaväri, fontit ja asettelu.
-* **GitHub Pages** – Sovelluksen ilmainen ylläpito ja julkaisu.
+## 🛠️ Tekninen toteutus
+* **HTML5:** Semanttinen rakenne ja lomake-elementit.
+* **CSS3 Custom Properties:** Teema on helposti muokattavissa muuttujien (`:root`) avulla.
+* **Flexbox & Grid:** Edistynyt asettelu, joka pitää keskustelualueen ja syötekentän paikoillaan.
+* **Animaatiot:** `@keyframes` -efektit viestien ilmestymiselle.
 
-## 📁 Näin asennat projektin itsellesi
-1. Kopioi tämä repositorio (Fork) tai lataa tiedostot.
-2. Avaa `index.html` selaimessasi.
-3. Muokkaa `styles.css` -tiedostoa, jos haluat vaihtaa värejä tai fontteja!
+## 📂 Käyttöönotto
+1. Kopioi projektin koodi.
+2. Tallenna se nimellä `index.html`.
+3. Avaa tiedosto millä tahansa nykyaikaisella selaimella tai julkaise se GitHub Pagesin kautta.
 
 ---
-*Tehty oppimistarkoituksessa osana GitHub-harjoittelua.*
+*Tämä projekti on osa koodausmatkaani ja se on rakennettu oppimistarkoituksessa.*
